@@ -1,9 +1,10 @@
-import './App.css'
+import './App.scss'
+import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './pages/home';
 import Details from './pages/details';
 
-function App() {
+const App: React.FC = () => {
 
 
   return (
@@ -16,4 +17,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
