@@ -43,15 +43,18 @@ const Searchbar: React.FC = () => {
         <div className="searchbar">
             <ul onClick={toggleListVisibility} ref={listRef}>
                 <li className="optionStyleTattoo">Choisissez un style</li>
-                {tattooStyles.map((style, index) => (
-                    <li
-                        className="optionStyleTattoo?"                   
+                {tattooStyles.length > 0 ? (
+                    tattooStyles.map((style, index) => (
+                    <li                
                         key={index} 
                         value={style.value}
                         onClick={() => handleClickStyle(style.value)}
                     >{style.label}
                     </li>
-                ))}
+                    ))
+                ) : (
+                    <p>Aucun artiste trouvé.</p>
+                )}
             </ul>
             <input />
         </div>
