@@ -3,6 +3,19 @@
     flex-direction: row;
     justify-content: center;
 
+
+    ul {
+        user-select: none;
+
+        :hover {
+            cursor: pointer;       
+        } 
+
+        :active {
+            cursor: grabbing;
+        }
+    }
+
     input, ul {
         border: none;
         background-color: #333333;
@@ -14,27 +27,64 @@
     }
 
     :nth-child(1){
-        width: 30%;
-        border-right: 1px solid white;
+        width: 35%;
+        position: relative;
+        border-right: 2px solid white;
         border-radius: 20px 0 0 20px;
         list-style-type: none;
         padding: 0;
         margin: 0;
-
+        font-size: 18px;
+        
         li {
-            width: 100%;
+            width: auto;
+            border: none;
+        }
 
-            &:not(:first-child) {
-                display: none;
+        .optionStyleTattoo {
+            padding: 5px 10px;
+        }
+
+        .stylesColorbox {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            width: 200px;
+            text-align: center;
+            background-color: #333333;
+            border-radius: 20px;
+            z-index: 999;
+
+            li {
+                padding: 3px 0;  
+
+                &:hover {
+                   background-color: blue;  
+                }
+                
             }
+            .selected {
+                background-color: blue; 
+            }
+            :first-child {
+                padding-top: 5px;
+                border-radius: 20px 20px 0 0;
+            }
+            :last-child {
+                padding-bottom: 5px;
+                border-radius: 0 0 20px 20px;
+            } 
+            > *:not(:first-child):not(:last-child){
+                border-radius: 0;
+            } 
         }
     }
     :nth-child(2){
         width: 50%;
+        padding-left: 20px;
         border-radius: 0 20px 20px 0;
-    }
-
-    .optionStyleTattoo {
-        padding: 5px 10px;
+        font-size: 18px;
     }
 }

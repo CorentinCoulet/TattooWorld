@@ -9,52 +9,46 @@ interface TattooStyle {
 
 const Searchbar: React.FC = () => {
 
+    const [colorboxOpen, setColorboxOpen] = useState(false);
+    const [selected, setSelected] = useState<number[]>([]);
     const tattooStyles: TattooStyle[] = tattooStylesData.styles.map((style: string) => ({
         value: style,
         label: style
     })); 
     
-    const [selectedStyles, setSelectedStyles] = useState<string[]>([]);
-    const [isListVisible, setListVisible] = useState(false);
-    const listRef = useRef<HTMLUListElement>(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (listRef.current && !listRef.current.contains(event.target as Node)) {
-                setListVisible(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-    const toggleListVisibility = () => {
-        setListVisible(!isListVisible);
+    const handleColorboxToggle = () => {
+        setColorboxOpen(!colorboxOpen);
     }
 
-    const handleClickStyle = (style: string) => {
-        setSelectedStyles([...selectedStyles, style]);
+    const handleStyleSelected = (index: number) => {
+        const isSelected = selected.includes(index);
+        if(isSelected){
+            setSelected(selected.filter((i) => i !== index));
+        } else {
+            setSelected([...selected, index]);
+        }
     }
 
     return (
         <div className="searchbar">
-            <ul onClick={toggleListVisibility} ref={listRef}>
-                <li className="optionStyleTattoo">Choisissez un style</li>
-                {tattooStyles.length > 0 ? (
-                    tattooStyles.map((style, index) => (
-                    <li                
-                        key={index} 
-                        value={style.value}
-                        onClick={() => handleClickStyle(style.value)}
-                    >{style.label}
-                    </li>
-                    ))
-                ) : (
-                    <p>Aucun artiste trouvé.</p>
-                )}
+            <ul>
+                <li className="optionStyleTattoo" onClick={handleColorboxToggle}>
+                    Choisissez un style
+                </li>
+                {colorboxOpen && (
+                    <div className="stylesColorbox">
+                        {tattooStyles.map((style, index) => (
+                            <li 
+                                key={index} 
+                                value={style.value} 
+                                onClick={() => handleStyleSelected(index)}
+                                className={selected.includes(index) ? "styleOption selected" : "styleOption"}
+                            >
+                                {style.label}
+                            </li>
+                        ))}
+                    </div>
+                )} 
             </ul>
             <input />
         </div>
