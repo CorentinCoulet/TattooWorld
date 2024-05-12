@@ -23,9 +23,13 @@ const Home: React.FC = () => {
                                 <p>Note/Avis</p>
                             </div>
                             <div>
+                                <div className="stylesTattooArtist">
+                                    {artist.styles.map((style: string, index: number) => (
+                                        <span key={index}>{style}</span>
+                                    ))}
+                                </div>
                                 <p>{artist.name}</p>
-                                <p>{}</p>
-                                <p>Descriptif</p>
+                                <p>{artist.description}</p>
                             </div>
                         </div>
                     </div>

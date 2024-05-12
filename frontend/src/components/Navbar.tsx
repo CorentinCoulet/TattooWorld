@@ -42,8 +42,8 @@ const Navbar: React.FC = () => {
                                 <g 
                                     fill="none" 
                                     stroke="currentColor" 
-                                    stroke-linecap="round" 
-                                    stroke-width="2">
+                                    strokeLinecap="round" 
+                                    strokeWidth="2">
                                     <path d="M5 5L19 5">
                                         <animate 
                                             fill="freeze" 
