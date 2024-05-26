@@ -3,8 +3,8 @@ import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import "../styles/Home.scss";
 import artistsData from "../../../bdd/artists.json";
-import exempleLogo from "../assets/logoExempleTatoueur.png";
-import banner from "../assets/banner.png";
+import exempleLogo from "../assets/logoExempleTatoueur.jpg";
+import banner from "../assets/bannerExample.jpg";
 
 const Home: React.FC = () => {
 

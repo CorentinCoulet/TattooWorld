@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import '../styles/Navbar.scss';
-import tattooLogo from '../assets/tattooLogo.png';
+import tattooLogo from '../assets/logoYinYang.png';
 
 const Navbar: React.FC = () => {
 
