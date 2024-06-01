@@ -11,7 +11,7 @@ const Searchbar: React.FC = () => {
 
     const [colorboxOpen, setColorboxOpen] = useState(false);
     const [selected, setSelected] = useState<number[]>([]);
-    let styleRef: RefObject<HTMLDivElement> = useRef(null);
+    const styleRef: RefObject<HTMLDivElement> = useRef(null);
     const tattooStyles: TattooStyle[] = tattooStylesData.styles.map((style: string) => ({
         value: style,
         label: style
@@ -31,7 +31,7 @@ const Searchbar: React.FC = () => {
         return () => {
             document.removeEventListener("mousedown", handler);
         }
-    });
+    }, [styleRef]);
     
     const handleColorboxToggle = () => {
         setColorboxOpen(!colorboxOpen);

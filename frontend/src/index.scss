@@ -1,16 +1,22 @@
-html, body {
+* {
+    box-sizing: border-box;
+}
+
+html {
     margin: 0;
-    padding: 0;
+    padding: 0 0 10px 0;
     height: 100%; 
     width: 100%;
     box-sizing: border-box;
-    overflow: auto;
     font-family: 'Arial', sans-serif;
     font-size: 18px;
-        
-    #root {
-        min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    body, #root {
+        margin: 0;
+        padding: 0;
         background: linear-gradient(to top, rgba(0,0,0,1), rgba(112, 128, 144, 1) 71%);
-        overflow: scroll;
-    } 
+    }
 }
+
