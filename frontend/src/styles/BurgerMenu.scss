@@ -1,0 +1,14 @@
+.burgerMenuOpen {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li:first-child {
+        margin-top: 60px;
+    }
+
+    li {
+        text-align: center;
+        padding-bottom: 35px;
+    }
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
-import BurgerMenu from "../components/BurgerMenu";
 import "../styles/Home.scss";
 import artistsData from "../../../bdd/artists.json";
 import exempleLogo from "../assets/logoExempleTatoueur.jpg";
