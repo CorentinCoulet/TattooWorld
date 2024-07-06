@@ -1,32 +1,47 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:13
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydb
+      NODE_ENV: production
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_NAME: ${POSTGRES_DB}
+    depends_on:
+      - database
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
-  backend:
-    image: votre_nom_utilisateur_docker_hub/backend:latest
-    ports:
-      - "3001:3000"
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://user:password@postgres:5432/mydb
-
-  frontend:
-    image: votre_nom_utilisateur_docker_hub/frontend:latest
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
-  postgres-data:
+  db-data:

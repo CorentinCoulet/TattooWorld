@@ -1,6 +1,5 @@
 import React, { RefObject, useEffect, useRef, useState } from "react";
 import '../styles/Searchbar.scss';
-import tattooStylesData from '../../../bdd/stylesTattoo.json';
 
 interface TattooStyle {
     value: string;
@@ -9,10 +8,18 @@ interface TattooStyle {
 
 const Searchbar: React.FC = () => {
 
+    const tattooStylesData: string[] = [
+        "Old School",
+        "New School",
+        "Realisme",
+        "Traditional",
+        "Minimaliste",
+    ];
+
     const [colorboxOpen, setColorboxOpen] = useState(false);
     const [selected, setSelected] = useState<number[]>([]);
     const styleRef: RefObject<HTMLDivElement> = useRef(null);
-    const tattooStyles: TattooStyle[] = tattooStylesData.styles.map((style: string) => ({
+    const tattooStyles: TattooStyle[] = tattooStylesData.map((style: string) => ({
         value: style,
         label: style
     })); 

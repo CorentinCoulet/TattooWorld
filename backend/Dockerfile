@@ -1,19 +1,21 @@
+# Utilisez une image de base Node.js
 FROM node:14
 
-# Répertoire de travail de l'application
+# Créez et définissez le répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers package.json et package-lock.json
-COPY package*.json ./
+# Copiez le package.json et package-lock.json (ou yarn.lock)
+COPY package.json .
+COPY package-lock.json .
 
-# Installer les dépendances
+# Installez les dépendances
 RUN npm install
 
-# Copier le reste des fichiers de l'application
+# Copiez le reste des fichiers du backend
 COPY . .
 
-# Exposer le port de l'application
+# Exposez le port sur lequel votre application Nest.js écoute
 EXPOSE 3000
 
 # Commande pour démarrer l'application
-CMD ["npm", "start"]
+CMD ["npm", "run", "start:prod"]

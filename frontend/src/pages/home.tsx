@@ -2,9 +2,39 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import "../styles/Home.scss";
-import artistsData from "../../../bdd/artists.json";
 import exempleLogo from "../assets/logoExempleTatoueur.jpg";
 import banner from "../assets/bannerExample.jpg";
+
+interface Artist {
+    name: string;
+    location: {
+        city: string;
+        country: string;
+    };
+    styles: string[];
+    description: string;
+}
+
+const artistsData: Artist[] = [
+    {
+        name: "Nom de l'artiste 1",
+        location: {
+            city: "Ville 1",
+            country: "Pays 1"
+        },
+        styles: ["Style 1", "Style 2", "Style 3"],
+        description: "Description de l'artiste 1"
+    },
+    {
+        name: "Nom de l'artiste 2",
+        location: {
+            city: "Ville 2",
+            country: "Pays 2"
+        },
+        styles: ["Style 4", "Style 5", "Style 6"],
+        description: "Description de l'artiste 2"
+    },
+];
 
 const Home: React.FC = () => {
 
@@ -13,7 +43,7 @@ const Home: React.FC = () => {
             <Navbar />
             <Searchbar />
             <div>
-               {artistsData.map((artist: any, index, number) => (
+               {artistsData.map((artist: Artist, index: number) => (
                     <div className="artistsList" key={index}>
                         <div><img src={banner} alt="bannière d'entreprise" /></div>
                         <div><img src={exempleLogo} alt="logo d'entreprise" /></div>
@@ -24,8 +54,8 @@ const Home: React.FC = () => {
                             </div>
                             <div>
                                 <div className="stylesTattooArtist">
-                                    {artist.styles.map((style: string, index: number) => (
-                                        <span key={index}>{style}</span>
+                                    {artist.styles.map((style: string, styleIndex: number) => (
+                                        <span key={styleIndex}>{style}</span>
                                     ))}
                                 </div>
                                 <p>{artist.name}</p>
