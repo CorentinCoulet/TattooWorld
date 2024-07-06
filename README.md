@@ -26,7 +26,7 @@ Tatoo World offrira une interface intuitive où les utilisateurs pourront recher
 
 - Utilisation des dernières technologies web pour assurer la rapidité, la sécurité et la stabilité de la plateforme. Les technologies prévues incluent :
     - Vite.js (React / TypeScript) pour le Frontend (Vue)
-    - Symfony pour le backend (Model Controller)
+    - Nest.js pour le backend (Model Controller)
     - PostgresSQL pour la base de données
     - Git pour le contrôle de version
     - Docker pour la conteneurisation
