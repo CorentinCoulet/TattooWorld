@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:16
 
 # Répertoire de travail de l'application
 WORKDIR /app
@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Exposer le port de l'application
-EXPOSE 3000
+EXPOSE 4173
 
 # Commande pour démarrer le serveur
-CMD ["npx", "serve", "-s", "build"]
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "4173"]

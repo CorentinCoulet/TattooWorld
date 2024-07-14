@@ -1,0 +1,33 @@
+# Node modules
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs
+*.log
+yarn-debug.log*
+.yarn-integrity
+
+# Environments
+.env
+.env.local
+.env.test
+.env.production
+
+# Build outputs
+dist
+out
+build
+
+# Misc
+.DS_Store
+*.swp
+*.swo
+.vscode
+.idea
+*.iml
+*.sublime-project
+*.sublime-workspace
+*.tmproj
+.editorconfig
