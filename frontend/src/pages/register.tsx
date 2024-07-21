@@ -13,7 +13,7 @@ const Register: React.FC = () => {
         <div className="register-container">
             <div className="navigation-buttons">
                 <Link to="/" className="nav-button">
-                    Retour
+                    Retour à l'accueil
                 </Link>
                 <Link to="/login" className="nav-button">
                    Déjà un compte ?

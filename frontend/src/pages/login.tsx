@@ -14,6 +14,10 @@ const Login: React.FC = () => {
 
     return (
         <div className="login-container">
+            <div className="navigation-buttons">
+                <Link to="/" className="nav-button">Retour à l'accueil</Link>
+                <Link to="/register" className="nav-button">Vous n'avez pas de compte ?</Link>
+            </div>
             <h1>Login</h1>
             <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group">
@@ -38,9 +42,6 @@ const Login: React.FC = () => {
                 </div>
                 <button type="submit" className="submit-button">Login</button>
             </form>
-            <div className="additional-links">
-                <p>Vous n'avez pas de compte ? <Link to="/register" className="register-link">Enregistrez-vous !</Link></p>
-            </div>
         </div>
     );
 };
