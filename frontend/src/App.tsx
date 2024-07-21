@@ -5,6 +5,8 @@ import Home from './pages/home';
 import Details from './pages/details';
 import UserAccount from './pages/userAccount';
 import ArtistAccount from './pages/artistAccount';
+import Login from './pages/login';
+import Register from './pages/register';
 
 const App: React.FC = () => {
 
@@ -12,6 +14,8 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/details' element={<Details />} />
         <Route path='/user' element={<UserAccount />} />
         <Route path='/artist' element={<ArtistAccount />} />

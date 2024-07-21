@@ -1,0 +1,162 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProfilType {
+  USER
+  ARTIST
+  MODO
+  ADMIN
+}
+
+model Profil {
+  id                Int         @id @default(autoincrement())
+  name              String
+  surname           String
+  password          String
+  mail              String      @unique
+  created_at        DateTime    @default(now())
+  profil_type       ProfilType 
+
+  user              User?
+  artist            Artist?
+  modo              Modo?
+  admin             Admin?
+
+  @@index([mail])
+}
+
+model User {
+  id                Int       @id @default(autoincrement())
+  budget            Float?
+  preferences       String?   
+  address           String    
+  profil            Profil    @relation(fields: [profil_id], references: [id])
+  profil_id         Int       @unique
+  user_id           Int       @unique
+
+  comments          Comment[]
+}
+
+model Artist {
+  id                Int       @id @default(autoincrement())
+  siteWeb           String
+  location          String
+  reseaux           Json      
+  experience        String    
+  certificats       String    
+  cgu               String?   
+  profil            Profil    @relation(fields: [profil_id], references: [id])
+  profil_id         Int       @unique
+  artist_id         Int       @unique
+
+  pictures          Picture[]
+  bookings          Booking[]
+  comments          Comment[]
+  services          Service[]
+  categories        TattooCategory[]
+}
+
+model Modo {
+  id                Int       @id @default(autoincrement())
+  number_reports    Int
+  reports           Json      
+  profil            Profil    @relation(fields: [profil_id], references: [id])
+  profil_id         Int       @unique
+  modo_id           Int       @unique
+}
+
+model Admin {
+  id                Int       @id @default(autoincrement())
+  label             String  
+  profil            Profil    @relation(fields: [profil_id], references: [id])
+  profil_id         Int       @unique
+  admin_id          Int       @unique
+}
+
+model Location {
+  id                Int       @id @default(autoincrement())
+  lattitude         Float     
+  longitude         Float
+  enterprise_name   String
+  address           String
+  city              String
+  postal_code       Int
+  country           String
+  schedules         Json
+
+  @@index([city, postal_code])
+}
+
+model Picture {
+  id                Int      @id @default(autoincrement())
+  artist_id         Int
+  picture_url       String  
+  artist            Artist   @relation(fields: [artist_id], references: [id])
+
+  @@index([artist_id])      
+}
+
+model Service {
+  id                Int      @id @default(autoincrement())
+  prices            Int
+  deposit           Int
+  fees              Int
+
+  artist            Artist   @relation(fields: [artist_id], references: [id])
+  artist_id         Int
+
+  bookings          Booking[] // Relation inverse
+
+  @@index([artist_id])
+}
+
+model Booking {
+  id                Int       @id @default(autoincrement())
+  appointment       DateTime
+  service_id        Int
+  artist_id         Int
+
+  artist            Artist    @relation(fields: [artist_id], references: [id])
+  service           Service   @relation(fields: [service_id], references: [id])
+
+  @@index([artist_id])
+  @@index([service_id])
+}
+
+model TattooCategory {
+  id                Int       @id @default(autoincrement())
+  category          String    @unique
+
+  artists           Artist[]
+}
+
+model Statistic {
+  id                Int       @id @default(autoincrement())
+  total_users       Int
+  total_artist      Int
+  total_comments    Int
+  total_reviews     Int
+  most_popular_comments   String
+  top_rated_artists       String
+  search_trends           String
+}
+
+model Comment {
+  id                Int       @id @default(autoincrement())
+  artist_id         Int
+  user_id           Int
+  note              Int
+  comment           String
+
+  artist            Artist    @relation(fields: [artist_id], references: [id])
+  user              User      @relation(fields: [user_id], references: [id])
+
+  @@index([artist_id])
+  @@index([user_id])
+}
