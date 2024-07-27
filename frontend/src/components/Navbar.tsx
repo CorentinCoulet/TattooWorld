@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
             <div className="navbar-entity">
                 <div>
                     <Link to="/">
-                        <a><img src={tattooLogo} alt="logo du site" /></a>
+                        <img src={tattooLogo} alt="logo du site" />
                     </Link>
                     <Link to="/">
                         <p>TattooWorld</p>
