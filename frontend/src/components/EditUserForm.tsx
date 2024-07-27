@@ -1,5 +1,6 @@
-import React from 'react';
-import '../styles/EditUserForm.scss';
+import React from "react";
+import Selectpicker from "../components/Selectpicker";
+import "../styles/EditUserForm.scss";
 
 interface Preference {
   id: number;
@@ -18,7 +19,9 @@ interface EditUserFormProps {
   };
   predefinedPreferences: Preference[];
   tattooStyles: Preference[];
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   onPreferenceChange: (id: number) => void;
   onTattooStyleChange: (selectedStyles: number[]) => void;
   onSubmit: (e: React.FormEvent) => void;
@@ -35,12 +38,9 @@ const EditUserForm: React.FC<EditUserFormProps> = ({
   onSubmit,
   onCancel,
 }) => {
-  const selectedTattooStyles = Array.from(userInfo.tattooStyles).map(id => id.toString());
-
-  const handleTattooStyleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValues = Array.from(event.target.selectedOptions, option => parseInt(option.value, 10));
-    onTattooStyleChange(selectedValues);
-  };
+  const selectedTattooStyles = Array.from(userInfo.tattooStyles).map((id) =>
+    id.toString()
+  );
 
   return (
     <form className="edit-form" onSubmit={onSubmit}>
@@ -99,36 +99,34 @@ const EditUserForm: React.FC<EditUserFormProps> = ({
       <div className="form-group">
         <label>Préférences:</label>
         <div className="preferences">
-          {predefinedPreferences.map(pref => (
-            <div key={pref.id}>
+          {predefinedPreferences.map((pref) => (
+            <div key={pref.id} className="preference-item">
+              <label htmlFor={`preference-${pref.id}`}>{pref.label}</label>
               <input
                 type="checkbox"
                 id={`preference-${pref.id}`}
                 checked={userInfo.preferences.has(pref.id)}
                 onChange={() => onPreferenceChange(pref.id)}
               />
-              <label htmlFor={`preference-${pref.id}`}>{pref.label}</label>
             </div>
           ))}
         </div>
       </div>
       <div className="form-group">
         <label>Styles de tatouages préférés:</label>
-        <select
-          multiple
-          value={selectedTattooStyles}
-          onChange={handleTattooStyleSelect}
-          className="tattoo-style-select"
-        >
-          {tattooStyles.map(ts => (
-            <option key={ts.id} value={ts.id}>
-              {ts.label}
-            </option>
-          ))}
-        </select>
+        <Selectpicker
+          options={tattooStyles.map((style) => ({
+            value: style.id.toString(),
+            label: style.label,
+          }))}
+          selectedOptions={selectedTattooStyles}
+          onChange={(selected) => onTattooStyleChange(selected.map(Number))}
+        />
       </div>
       <div className="form-actions">
-        <button type="submit" className="save-button">Sauvegarder</button>
+        <button type="submit" className="save-button">
+          Sauvegarder
+        </button>
         <button type="button" className="cancel-button" onClick={onCancel}>
           Annuler
         </button>

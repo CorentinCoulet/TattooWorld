@@ -2,54 +2,92 @@
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: #f4f4f4;
-  max-width: 800px;
-  margin: auto;
-  border: 1px solid #ddd;
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .navigation-buttons {
+    width: 100%;
+    max-width: 800px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 
     .nav-button {
-      padding: 10px 15px;
+      padding: 12px 18px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
 
       &:first-of-type {
         background-color: #2196f3;
         color: white;
+
+        &:hover {
+          background-color: #1976d2;
+          transform: scale(1.05);
+        }
       }
 
       &:last-of-type {
         background-color: #f44336;
         color: white;
+
+        &:hover {
+          background-color: #d32f2f;
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    .nav-link {
+      padding: 12px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      color: white;
+      background-color: #2196f3;
+      cursor: pointer;
+
+      &:hover {
+        background: #1976d2;
+        transform: scale(1.05);
       }
     }
   }
 
   .profile-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     h1 {
-      font-size: 24px;
+      font-size: 28px;
       color: #333;
     }
   }
 
   .profile-info {
+    width: 100%;
+    max-width: 800px;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
     p {
-      font-size: 16px;
-      margin-bottom: 10px;
+      font-size: 18px;
+      margin-bottom: 30px;
 
       strong {
         font-weight: bold;
@@ -60,8 +98,9 @@
       margin-top: 20px;
 
       h2 {
-        font-size: 20px;
-        margin-bottom: 10px;
+        font-size: 22px;
+        margin-bottom: 15px;
+        color: #333;
       }
 
       ul {
@@ -70,26 +109,34 @@
 
         li {
           background-color: #f9f9f9;
-          padding: 10px;
+          padding: 15px;
           border-radius: 4px;
-          margin-bottom: 5px;
+          margin-bottom: 10px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
       }
 
       p {
-        font-size: 16px;
+        font-size: 18px;
         color: #666;
       }
     }
 
     .edit-button {
-      padding: 10px 15px;
+      padding: 12px 18px;
+      margin-bottom: 10px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       background-color: #2196f3;
       color: white;
       font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background-color: #1976d2;
+        transform: scale(1.05);
+      }
     }
   }
 }

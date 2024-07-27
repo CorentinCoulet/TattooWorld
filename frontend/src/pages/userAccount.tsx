@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import EditProfileForm from '../components/EditUserForm';
 import '../styles/UserAccount.scss';
 
@@ -21,8 +22,8 @@ const UserAccount: React.FC = () => {
     name: 'John',
     surname: 'Doe',
     email: 'john.doe@example.com',
-    phone: '123-456-7890',
-    address: '123 Main St',
+    phone: '01.11.11.11.11',
+    address: '123 Rue Pas Là',
     preferences: new Set([1]), 
     tattooStyles: new Set([1, 3]), 
   });
@@ -65,7 +66,7 @@ const UserAccount: React.FC = () => {
   return (
     <div className="user-profile">
       <div className="navigation-buttons">
-        <button className="nav-button">Accueil</button>
+        <Link to="/" className="nav-link">Retour à l'accueil</Link>
         <button className="nav-button" onClick={handleDeleteAccount}>Supprimer le compte</button>
       </div>
 
